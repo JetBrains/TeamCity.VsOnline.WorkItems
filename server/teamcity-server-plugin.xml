@@ -2,9 +2,10 @@
 <teamcity-plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:noNamespaceSchemaLocation="urn:shemas-jetbrains-com:teamcity-plugin-v1-xml">
   <info>
-    <name>PLUGIN_NAME</name>
-    <display-name>PLUGIN_NAME</display-name>
+    <name>TeamCity.VsOnline</name>
+    <display-name>TeamCity.VsOnline</display-name>
     <version>@Plugin_Version@</version> <!-- will be replaced from script -->
+    <description>Provides integration with VisualStudio online as issue tracker</description>
     <vendor>
       <name>@Plugin_Vendor@</name>  <!-- will be replaced from script -->
       <url>@Plugin_Vendor_Url@</url> <!-- will be replaced from script -->
