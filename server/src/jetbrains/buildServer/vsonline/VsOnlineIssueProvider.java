@@ -16,24 +16,40 @@
 
 package jetbrains.buildServer.vsonline;
 
+import com.intellij.openapi.diagnostic.Logger;
 import jetbrains.buildServer.issueTracker.AbstractIssueProvider;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.regex.Matcher;
 
 /**
  * @author Oleg Rybak <oleg.rybak@jetbrains.com>
  */
 public class VsOnlineIssueProvider extends AbstractIssueProvider {
 
-  public static final String PROVIDER_TYPE = "vsonline";
+  private static final Logger LOG = Logger.getInstance(VsOnlineIssueProvider.class.getName());
+
+  public static final String PROVIDER_TYPE = "TeamCity.VsOnline";
 
   public VsOnlineIssueProvider(@NotNull final IssueFetcher fetcher) {
     super(PROVIDER_TYPE, fetcher);
   }
 
   @Override
-  public boolean isBatchFetchSupported() {
-    return true;
+  @NotNull
+  protected String extractId(@NotNull String match) {
+    final Matcher matcher = myPattern.matcher(match);
+    if (matcher.find() && matcher.groupCount() >= 1) {
+      String group = matcher.group(1);
+      if (group == null) {
+        LOG.warn("Failed to extract the issue id. Regex=" + myPattern + ", input=" + match);
+        return super.extractId(match);
+      }
+      return group;
+    } else {
+      return super.extractId(match);
+    }
   }
 
 }
