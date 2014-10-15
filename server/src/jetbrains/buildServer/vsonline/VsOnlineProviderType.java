@@ -16,20 +16,17 @@
 
 package jetbrains.buildServer.vsonline;
 
-import jetbrains.buildServer.issueTracker.*;
+import jetbrains.buildServer.issueTracker.PluginIssueProviderType;
+import jetbrains.buildServer.web.openapi.PluginDescriptor;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author Oleg Rybak <oleg.rybak@jetbrains.com>
+ * Created with IntelliJ IDEA.
+ *
+ * @author Oleg Rybak (oleg.rybak@jetbrains.com)
  */
-public class VsOnlineIssueProviderFactory extends AbstractIssueProviderFactory {
-
-  public VsOnlineIssueProviderFactory(@NotNull final IssueProviderType type, @NotNull final IssueFetcher fetcher) {
-    super(type, fetcher);
-  }
-
-  @NotNull
-  public IssueProvider createProvider() {
-    return new VsOnlineIssueProvider(myFetcher, myType);
+public class VsOnlineProviderType extends PluginIssueProviderType {
+  public VsOnlineProviderType(@NotNull final PluginDescriptor pluginDescriptor) {
+    super(pluginDescriptor, "vsonline", "Visual Studio Online");
   }
 }

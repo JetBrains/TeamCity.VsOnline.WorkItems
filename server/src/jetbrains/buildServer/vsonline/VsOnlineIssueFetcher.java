@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jetbrains.buildServer.issueTracker.AbstractIssueFetcher;
 import jetbrains.buildServer.issueTracker.IssueData;
 import jetbrains.buildServer.util.CollectionsUtil;
+import jetbrains.buildServer.util.ExceptionUtil;
 import jetbrains.buildServer.util.cache.EhCacheUtil;
 import org.apache.commons.httpclient.Credentials;
 import org.jetbrains.annotations.NotNull;
@@ -33,76 +34,76 @@ import java.util.Map;
  */
 public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
 
+  private static final String URL_TEMPLATE_GET_ISSUE = "%s/defaultcollection/_apis/wit/workitems/%s?$expand=all&api-version=%s";
 
-  public VsOnlineIssueFetcher(@NotNull EhCacheUtil cacheUtil) {
+
+  public VsOnlineIssueFetcher(@NotNull final EhCacheUtil cacheUtil) {
     super(cacheUtil);
   }
 
   /*
-  api.version - version of the api
-  area - ex. 'tcissues' - project
-
+   * see doc:
+   * http://www.visualstudio.com/en-us/integrate/reference/reference-vso-work-item-overview-vsi
+   * http://www.visualstudio.com/en-us/integrate/reference/reference-vso-work-item-work-items-vsi#byids
    */
 
   private static final String apiVersion = "1.0-preview.2"; // rest api version
-  private static final String account = "olegrybak"; // orybak.visualstudio.com
-  private static final String area = "tcissues"; // aka project
-
-
-
 
   @NotNull
-  public IssueData getIssue(@NotNull String host, @NotNull String id, @Nullable final Credentials credentials) throws Exception {
-    final String cacheKey = area + "." + id;
-    final String url = getUrl(host, id);
-    final String restUrl = String.format(
-            "https://%s.visualstudio.com/defaultcollection/_apis/wit/workitems/%s?api-version=%s",
-            account, id, apiVersion
-    );
-
+  public IssueData getIssue(@NotNull final String host, @NotNull final String id, @Nullable final Credentials credentials) throws Exception {
+    final String cacheKey = getCacheKey(host, credentials, id);
+    final String restUrl = String.format(URL_TEMPLATE_GET_ISSUE, host, id, apiVersion);
 
     return getFromCacheOrFetch(cacheKey, new FetchFunction() {
       @NotNull
       public IssueData fetch() throws Exception {
         InputStream body = fetchHttpFile(restUrl, credentials);
-        return doGetIssue(body, url);
+        return doGetIssue(body);
       }
     });
   }
 
-  private IssueData doGetIssue(@NotNull final InputStream input, String url) throws Exception {
-    final Map map = new ObjectMapper().readValue(input, Map.class);
-    return parseIssueData(url, map);
+  @Override
+  protected String getCacheKey(String host, Credentials credentials, String id) {
+    return host + "|" + id;
   }
 
-  private IssueData parseIssueData(String url, Map map) {
-    Map fields = (Map) map.get("fields");
+  private IssueData doGetIssue(@NotNull final InputStream input) throws Exception {
+    final Map map = new ObjectMapper().readValue(input, Map.class);
+    return parseIssueData(map);
+  }
+
+  private IssueData parseIssueData(@NotNull final Map map) {
+    final Map fields = (Map) map.get("fields");
+    final Map links = (Map) map.get("_links");
+    final Map html = (Map) links.get("html");
+    final String href = (String) html.get("href");
 
     return new IssueData(
             String.valueOf(map.get("id")),
             CollectionsUtil.asMap(
                     IssueData.SUMMARY_FIELD, (String) fields.get("System.Title"),
                     IssueData.STATE_FIELD, (String) fields.get("System.State"),
-                    IssueData.TYPE_FIELD, (String) fields.get("System.WorkItemType")
+                    IssueData.TYPE_FIELD, (String) fields.get("System.WorkItemType"),
+                    "href", href
             ),
             false, // todo: state
-            !"Feature".equals(map.get("System.WorkItemType")),
-            url
+            "Feature".equals(fields.get("System.WorkItemType")),
+            href
     );
-
-
-
   }
 
-
-  // https://fabrikam.visualstudio.com/DefaultCollection/_apis/wit/workItems/220
-
-  // todo: issue id unique for the account??
+  // this implementation should not be called if issue is not fetched yet,
+  // otherwise it will cause synchronous issue fetching
   @NotNull
-  public String getUrl(@NotNull String host, @NotNull String id) {
-    return String.format("https://%s.visualstudio.com/DefaultCollection/_apis/wit/workItems/%s",
-            account,
-            id
-            );
+  public String getUrl(@NotNull String host, @NotNull final Credentials credentials, @NotNull String id) {
+    String result = "";
+    try {
+      final IssueData data = getIssue(host, id, credentials);
+      result = data.getAllFields().get("href");
+    } catch (Exception e) {
+      ExceptionUtil.rethrowAsRuntimeException(e);
+    }
+    return result;
   }
 }

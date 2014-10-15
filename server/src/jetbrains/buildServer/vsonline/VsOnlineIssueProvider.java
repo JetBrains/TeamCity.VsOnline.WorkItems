@@ -19,6 +19,7 @@ package jetbrains.buildServer.vsonline;
 import com.intellij.openapi.diagnostic.Logger;
 import jetbrains.buildServer.issueTracker.AbstractIssueProvider;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
+import jetbrains.buildServer.issueTracker.IssueProviderType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.regex.Matcher;
@@ -30,10 +31,8 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
 
   private static final Logger LOG = Logger.getInstance(VsOnlineIssueProvider.class.getName());
 
-  public static final String PROVIDER_TYPE = "TeamCity.VsOnline";
-
-  public VsOnlineIssueProvider(@NotNull final IssueFetcher fetcher) {
-    super(PROVIDER_TYPE, fetcher);
+  public VsOnlineIssueProvider(@NotNull final IssueFetcher fetcher, @NotNull final IssueProviderType type) {
+    super(type.getType(), fetcher);
   }
 
   @Override
