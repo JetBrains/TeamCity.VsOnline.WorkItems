@@ -9,10 +9,10 @@
     </properties>
     <root id="root">
       <element id="directory" name="server">
-        <element id="archive" name="TeamCity.VsOnline-server.jar">
+        <element id="archive" name="vsonline-server.jar">
           <element id="module-output" name="server" />
         </element>
-        <element id="archive" name="TeamCity.VsOnline-resources.jar">
+        <element id="archive" name="vsonline-resources.jar">
           <element id="directory" name="buildServerResources">
             <element id="dir-copy" path="$PROJECT_DIR$/server/resources" />
           </element>

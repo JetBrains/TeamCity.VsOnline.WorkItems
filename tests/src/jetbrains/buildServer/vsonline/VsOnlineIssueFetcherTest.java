@@ -63,7 +63,7 @@ public class VsOnlineIssueFetcherTest extends BaseServerTestCase {
 
   @Test
   public void testSimple() throws Exception {
-    IssueData data = myFetcher.getIssue("", "1", myCredentials);
+    IssueData data = myFetcher.getIssue("http://olegrybak.visualstudio.com", "1", myCredentials);
     assertNotNull(data);
     System.out.println(data);
     System.out.println(CollectionsUtil.to_s(CollectionsUtil.flatten(data.getAllFields())));

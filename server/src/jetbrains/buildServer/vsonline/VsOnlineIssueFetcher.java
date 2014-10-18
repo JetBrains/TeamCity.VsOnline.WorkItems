@@ -51,7 +51,7 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
 
   @NotNull
   public IssueData getIssue(@NotNull final String host, @NotNull final String id, @Nullable final Credentials credentials) throws Exception {
-    final String cacheKey = getCacheKey(host, credentials, id);
+    final String cacheKey = getCacheKey(host, id);
     final String restUrl = String.format(URL_TEMPLATE_GET_ISSUE, host, id, apiVersion);
 
     return getFromCacheOrFetch(cacheKey, new FetchFunction() {
@@ -63,8 +63,8 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
     });
   }
 
-  @Override
-  protected String getCacheKey(String host, Credentials credentials, String id) {
+  //@Override
+  protected String getCacheKey(String host, String id) {
     return host + "|" + id;
   }
 
@@ -91,6 +91,11 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
             "Feature".equals(fields.get("System.WorkItemType")),
             href
     );
+  }
+
+  @NotNull
+  public String getUrl(@NotNull String host, @NotNull String id) {
+    return host + "/DefaultCollection/tcissues/_workitems/edit/" + id;
   }
 
   // this implementation should not be called if issue is not fetched yet,

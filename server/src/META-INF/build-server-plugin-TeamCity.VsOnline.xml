@@ -7,7 +7,6 @@
         default-autowire="constructor"
         >
 
-  <bean class="jetbrains.buildServer.vsonline.VsOnlineProviderType"/>
   <bean class="jetbrains.buildServer.vsonline.VsOnlineIssueFetcher"/>
   <bean class="jetbrains.buildServer.vsonline.VsOnlineIssueProviderFactory"/>
 
