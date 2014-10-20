@@ -42,6 +42,7 @@
       <td>
         <props:textProperty name="collection" maxlength="100"/>
         <span id="error_collection" class="error"></span>
+        <span class="fieldExplanation">If no collection is specified, default one will be used</span>
       </td>
     </tr>
     <tr>

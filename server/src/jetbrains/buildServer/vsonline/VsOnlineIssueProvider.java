@@ -20,8 +20,12 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.text.StringUtil;
 import jetbrains.buildServer.issueTracker.AbstractIssueProvider;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
+import jetbrains.buildServer.serverSide.InvalidProperty;
+import jetbrains.buildServer.serverSide.PropertiesProcessor;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collection;
+import java.util.Map;
 import java.util.regex.Matcher;
 
 /**
@@ -63,5 +67,23 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
     }
     final String project = myProperties.get("project");
     return hostOnly + collection + "/" + project + "/";
+  }
+
+  @NotNull
+  @Override
+  public PropertiesProcessor getPropertiesProcessor() {
+    final PropertiesProcessor superProcessor = super.getPropertiesProcessor();
+    return new PropertiesProcessor() {
+      public Collection<InvalidProperty> process(Map<String, String> properties) {
+        final Collection<InvalidProperty> result = superProcessor.process(properties);
+        // process collection
+        // process project
+        final String project = properties.get("project");
+        if (StringUtil.isEmptyOrSpaces(project)) {
+          result.add(new InvalidProperty("project", "Project should not be empty"));
+        }
+        return result;
+      }
+    };
   }
 }
