@@ -17,6 +17,7 @@
 package jetbrains.buildServer.vsonline;
 
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.util.text.StringUtil;
 import jetbrains.buildServer.issueTracker.AbstractIssueProvider;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
 import org.jetbrains.annotations.NotNull;
@@ -52,4 +53,15 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
     }
   }
 
+  @NotNull
+  @Override
+  protected String sanitizeHost(@NotNull String host) {
+    final String hostOnly = super.sanitizeHost(host);
+    String collection = myProperties.get("collection");
+    if (StringUtil.isEmptyOrSpaces(collection)) {
+      collection = "defaultcollection";
+    }
+    final String project = myProperties.get("project");
+    return hostOnly + collection + "/" + project + "/";
+  }
 }

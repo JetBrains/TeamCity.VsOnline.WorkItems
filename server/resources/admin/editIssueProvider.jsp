@@ -38,6 +38,20 @@
       </td>
     </tr>
     <tr>
+      <th><label for="collection" class="shortLabel">Collection:</label></th>
+      <td>
+        <props:textProperty name="collection" maxlength="100"/>
+        <span id="error_collection" class="error"></span>
+      </td>
+    </tr>
+    <tr>
+      <th><label for="project" class="shortLabel">Project:<l:star/></label></th>
+      <td>
+        <props:textProperty name="project" maxlength="100"/>
+        <span id="error_project" class="error"></span>
+      </td>
+    </tr>
+    <tr>
       <th><label for="pattern" class="shortLabel">Pattern: <l:star/></label></th>
       <td>
         <props:textProperty name="pattern" maxlength="100" style="width: 16em;"/>
@@ -45,6 +59,5 @@
         <span class="fieldExplanation">Use general regexp, e.g. #(\d+)<bs:help file="Issue+Tracker+Tab"/></span>
       </td>
     </tr>
-
   </table>
 </div>
