@@ -1,5 +1,27 @@
 <%@ include file="/include.jsp"%>
 <%@ taglib prefix="props" tagdir="/WEB-INF/tags/props" %>
+<script type="text/javascript">
+  BS.VsOnlineActions = {
+    prefix: "https://",
+    suffix: ".visualstudio.com",
+
+    onInit: function() {
+      var collection =  $j('#collection').val();
+      if (collection === '') {
+        $j('#collection').val('DefaultCollection');
+      }
+      var pattern = $j('#pattern').val();
+      if (pattern === '') {
+        $j('#pattern').val('#(\\d+)');
+      }
+      this.onAccountUpdate();
+    },
+
+    onAccountUpdate: function() {
+      $j('#host').val(this.prefix + $j('#account').val() + this.suffix);
+    }
+  }
+</script>
 
 <div>
   <table class="editProviderTable">
@@ -16,11 +38,13 @@
         <span id="error_name" class="error"></span>
       </td>
     </tr>
+    <props:hiddenProperty name="host"/>
     <tr>
-      <th><label for="host" class="shortLabel">Server URL: <l:star/></label></th>
+      <th><label for="account" class="shortLabel">Account Name: <l:star/></label></th>
       <td>
-        <props:textProperty name="host" maxlength="100"/>
-        <span id="error_host" class="error"></span>
+        <props:textProperty name="account" maxlength="50" onchange="BS.VsOnlineActions.onAccountUpdate();"/>
+        <span class="fieldExplanation" id="explanation_account">{account name}.visualstudio.com</span>
+        <span id="error_account" class="error"></span>
       </td>
     </tr>
     <tr>
@@ -34,6 +58,10 @@
       <th><label for="secure:password" class="shortLabel">Password:</label></th>
       <td>
         <props:passwordProperty name="secure:password" maxlength="100"/>
+        <span class="fieldExplanation" id="explanation_secure:password">
+          <a href="http://www.visualstudio.com/en-us/integrate/get-started/get-started-auth-introduction-vsi">Alternate Credentials</a>
+          must be enabled for used account
+        </span>
         <span id="error_secure:password" class="error"></span>
       </td>
     </tr>
@@ -42,7 +70,6 @@
       <td>
         <props:textProperty name="collection" maxlength="100"/>
         <span id="error_collection" class="error"></span>
-        <span class="fieldExplanation">If no collection is specified, default one will be used</span>
       </td>
     </tr>
     <tr>
@@ -62,3 +89,7 @@
     </tr>
   </table>
 </div>
+
+<script type="text/javascript">
+  BS.VsOnlineActions.onInit();
+</script>

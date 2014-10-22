@@ -80,8 +80,14 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
         // process project
         final String project = properties.get("project");
         if (StringUtil.isEmptyOrSpaces(project)) {
-          result.add(new InvalidProperty("project", "Project should not be empty"));
+          result.add(new InvalidProperty("project", "Project must not be empty"));
         }
+
+        final String account = properties.get("account");
+        if (StringUtil.isEmptyOrSpaces(account)) {
+          result.add(new InvalidProperty("account", "Account must not be empty"));
+        }
+
         return result;
       }
     };
