@@ -24,8 +24,7 @@ major version, plugin branch must be switched
 
 #### Builds on [public TeamCity server](http://teamcity.jetbrains.com)
 
-- [8.1.x version](https://teamcity.jetbrains.com/viewType.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x) ![](http://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x/statusIcon)
-
+- [8.1.x version](https://teamcity.jetbrains.com/viewType.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x) [![](http://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x/statusIcon)] (https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x%26buildId=lastSuccessful)
 
 ####License
 Apache 2.0
