@@ -35,7 +35,7 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
 
   private static final Logger LOG = Logger.getInstance(VsOnlineIssueProvider.class.getName());
 
-  public static final String TYPE = "vsonline";
+  public static final String TYPE = "VisualStudioOnline";
 
   public VsOnlineIssueProvider(@NotNull final IssueFetcher fetcher) {
     super(TYPE, fetcher);
@@ -74,20 +74,23 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
   public PropertiesProcessor getPropertiesProcessor() {
     final PropertiesProcessor superProcessor = super.getPropertiesProcessor();
     return new PropertiesProcessor() {
+
+      private void checkNotEmpty(Map<String, String> properties,
+                                 @NotNull Collection<InvalidProperty> result,
+                                 @NotNull final String fieldId,
+                                 @NotNull final String fieldName) {
+        final String value = properties.get(fieldId);
+        if (StringUtil.isEmptyOrSpaces(value)) {
+          result.add(new InvalidProperty(fieldId, fieldName + " must not be empty"));
+        }
+      }
+
       public Collection<InvalidProperty> process(Map<String, String> properties) {
         final Collection<InvalidProperty> result = superProcessor.process(properties);
-        // process collection
-        // process project
-        final String project = properties.get("project");
-        if (StringUtil.isEmptyOrSpaces(project)) {
-          result.add(new InvalidProperty("project", "Project must not be empty"));
-        }
-
-        final String account = properties.get("account");
-        if (StringUtil.isEmptyOrSpaces(account)) {
-          result.add(new InvalidProperty("account", "Account must not be empty"));
-        }
-
+        checkNotEmpty(properties, result, "project", "Project");
+        checkNotEmpty(properties, result, "account", "Account");
+        checkNotEmpty(properties, result, "username", "Username");
+        checkNotEmpty(properties, result, "secure:password", "Password");
         return result;
       }
     };

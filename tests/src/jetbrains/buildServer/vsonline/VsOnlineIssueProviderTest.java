@@ -20,16 +20,12 @@ import jetbrains.buildServer.BaseTestCase;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
 import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
-import jetbrains.buildServer.util.CollectionsUtil;
 import org.jmock.Mockery;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Oleg Rybak <oleg.rybak@jetbrains.com>
@@ -51,20 +47,22 @@ public class VsOnlineIssueProviderTest extends BaseTestCase {
 
   @Test
   public void testPropertiesProcessor() throws Exception{
-    final Map<String, String> properties = CollectionsUtil.asMap("project", "", "account", "");
+    final Set<String> mandatoryProperties = new HashSet<String>(Arrays.asList("project", "account", "username", "secure:password"));
+    final Map<String, String> properties = new HashMap<String, String>();
+    for (String name: mandatoryProperties) {
+      properties.put(name, "");
+    }
     final PropertiesProcessor processor = myProvider.getPropertiesProcessor();
     final Collection<InvalidProperty> result = processor.process(properties);
     assertNotNull(result);
     assertNotEmpty(result);
     Set<String> results = new HashSet<String>();
     for (InvalidProperty p: result) {
-      if ("project".equals(p.getPropertyName())) {
-        results.add("project");
-      } else if ("account".equals(p.getPropertyName())) {
-        results.add("account");
+      if (mandatoryProperties.contains(p.getPropertyName())) {
+        results.add(p.getPropertyName());
       }
     }
-    assertContains(results, "project", "account");
+    assertTrue(results.containsAll(mandatoryProperties));
   }
 
   @AfterMethod
