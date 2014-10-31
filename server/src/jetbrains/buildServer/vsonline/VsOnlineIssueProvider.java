@@ -35,10 +35,8 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
 
   private static final Logger LOG = Logger.getInstance(VsOnlineIssueProvider.class.getName());
 
-  public static final String TYPE = "VisualStudioOnline";
-
   public VsOnlineIssueProvider(@NotNull final IssueFetcher fetcher) {
-    super(TYPE, fetcher);
+    super("visualstudioonline", fetcher);
   }
 
   @Override
