@@ -5,7 +5,7 @@
       <options enabled="true" />
     </properties>
     <root id="root">
-      <element id="archive" name="vsonline.zip">
+      <element id="archive" name="vsonline-workitems.zip">
         <element id="artifact" artifact-name="plugin" />
       </element>
     </root>

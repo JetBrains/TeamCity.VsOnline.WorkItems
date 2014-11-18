@@ -76,7 +76,7 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
     }
     final String hostOnly = m.group(1);
     final String collection = m.group(2);
-    final String cacheKey = getCacheKey(hostOnly + "/" + collection, id);
+    final String cacheKey = getUrl(host, id);
     final String restUrl = String.format(URL_TEMPLATE_GET_ISSUE, hostOnly, collection, id, apiVersion);
     return getFromCacheOrFetch(cacheKey, new FetchFunction() {
       @NotNull
@@ -85,11 +85,6 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
         return doGetIssue(body);
       }
     });
-  }
-
-  //@Override
-  protected String getCacheKey(String host, String id) {
-    return host + "|" + id;
   }
 
   private IssueData doGetIssue(@NotNull final InputStream input) throws Exception {
