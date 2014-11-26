@@ -1,6 +1,9 @@
 <component name="ArtifactManager">
   <artifact name="plugin-zip">
     <output-path>$PROJECT_DIR$/out/artifacts/plugin_zip</output-path>
+    <properties id="ant-postprocessing">
+      <options enabled="true" />
+    </properties>
     <root id="root">
       <element id="archive" name="vsonline-workitems.zip">
         <element id="artifact" artifact-name="plugin" />

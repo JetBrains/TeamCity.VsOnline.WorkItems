@@ -2,14 +2,17 @@
   <artifact name="plugin">
     <output-path>$PROJECT_DIR$/out/artifacts/plugin</output-path>
     <properties id="ant-postprocessing">
-      <options enabled="true" />
+      <options enabled="true">
+        <file>file://$PROJECT_DIR$/build/ant.build.xml</file>
+        <target>replace-tokens-in-teamcity-plugin-xml</target>
+      </options>
     </properties>
     <root id="root">
       <element id="directory" name="server">
-        <element id="archive" name="vsonline-server.jar">
+        <element id="archive" name="visualstudioonline-server.jar">
           <element id="module-output" name="server" />
         </element>
-        <element id="archive" name="vsonline-resources.jar">
+        <element id="archive" name="visualstudioonline-resources.jar">
           <element id="directory" name="buildServerResources">
             <element id="dir-copy" path="$PROJECT_DIR$/server/resources" />
           </element>
