@@ -36,16 +36,16 @@ import java.util.regex.Pattern;
 public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
 
   private interface Containers {
-    final String CONTAINER_FIELDS = "fields";
-    final String CONTAINER_LINKS  = "_links";
-    final String CONTAINER_HTML   = "html";
+    String CONTAINER_FIELDS = "fields";
+    String CONTAINER_LINKS  = "_links";
+    String CONTAINER_HTML   = "html";
   }
 
   private interface Fields {
-    final String FIELD_SUMMARY = "System.Title";
-    final String FIELD_STATE   = "System.State";
-    final String FIELD_TYPE    = "System.WorkItemType";
-    final String FIELD_HREF    = "href";
+    String FIELD_SUMMARY = "System.Title";
+    String FIELD_STATE   = "System.State";
+    String FIELD_TYPE    = "System.WorkItemType";
+    String FIELD_HREF    = "href";
   }
 
   // host + / collection / area

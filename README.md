@@ -1,4 +1,4 @@
-### TeamCity Visual Studio Online Workitems plugin
+### TeamCity Visual Studio Online WorkItems plugin
 ##### Enables tracking of issues defined in [Visual Studio Online projects](http://msdn.microsoft.com/en-us/library/hh409275.aspx)
 
 #### Functionality and Limitations
@@ -11,10 +11,14 @@ Plugin uses standard TeamCity API to integrate with Visual Studio Online. Please
 - Supports only one collection per issue tracker defined
 - Supports only one project per issue tracker defined. Project must be specified explicitly
 
+##### Hajipur-9.0.x Branch
+
+- Support for human readable display name on UI
+
 #### Installation and usage
 
 Before plugin can be used, [Alternate Credentials](http://www.visualstudio.com/en-us/integrate/get-started/get-started-auth-introduction-vsi) should be enabled
-Plugin can be installed by following standard [plugin installation procedure](https://confluence.jetbrains.com/display/TCD8/Installing+Additional+Plugins)
+Plugin can be installed by following standard [plugin installation procedure](https://confluence.jetbrains.com/display/TCD9/Installing+Additional+Plugins)
 
 #### Compatibility
 

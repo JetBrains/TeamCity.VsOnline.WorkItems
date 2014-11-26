@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
 public class VsOnlineIssueProviderFactory extends AbstractIssueProviderFactory {
 
   public VsOnlineIssueProviderFactory(@NotNull final IssueFetcher fetcher) {
-    super(fetcher, "VisualStudioOnline");
+    super(fetcher, VsOnlineIssueProvider.TYPE, VsOnlineIssueProvider.DISPLAY_NAME);
   }
 
   @NotNull

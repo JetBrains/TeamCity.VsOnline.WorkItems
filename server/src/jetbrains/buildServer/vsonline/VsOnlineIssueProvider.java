@@ -33,10 +33,16 @@ import java.util.regex.Matcher;
  */
 public class VsOnlineIssueProvider extends AbstractIssueProvider {
 
+  @NotNull
+  public static final String TYPE = "visualstudioonline";
+
+  @NotNull
+  public static final String DISPLAY_NAME = "VisualStudioOnline";
+
   private static final Logger LOG = Logger.getInstance(VsOnlineIssueProvider.class.getName());
 
   public VsOnlineIssueProvider(@NotNull final IssueFetcher fetcher) {
-    super("visualstudioonline", fetcher);
+    super(TYPE, fetcher);
   }
 
   @Override
