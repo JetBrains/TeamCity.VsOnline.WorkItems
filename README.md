@@ -1,4 +1,4 @@
-### TeamCity Visual Studio Online Workitems plugin
+### TeamCity Visual Studio Online WorkItems plugin
 ##### Enables tracking of issues defined in [Visual Studio Online projects](http://msdn.microsoft.com/en-us/library/hh409275.aspx)
 
 #### Functionality and Limitations
@@ -24,7 +24,12 @@ major version, plugin branch must be switched
 
 #### Builds on [public TeamCity server](http://teamcity.jetbrains.com)
 
-- [8.1.x version](https://teamcity.jetbrains.com/viewType.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x) [![](http://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x/statusIcon)] (https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x%26buildId=lastSuccessful)
+- [8.1.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)
+
+#### Links
+
+- [Blog post] (http://blog.jetbrains.com/teamcity/2014/11/integrating-teamcity-and-visual-studio-online-work-items/) in TeamCity blog.
+- [Plugin page] (https://confluence.jetbrains.com/display/TW/Visual+Studio+Online+Work+Items)
 
 ####License
 Apache 2.0
