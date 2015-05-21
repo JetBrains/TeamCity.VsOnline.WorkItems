@@ -20,6 +20,7 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.text.StringUtil;
 import jetbrains.buildServer.issueTracker.AbstractIssueProvider;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
+import jetbrains.buildServer.issueTracker.IssueProviderType;
 import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
 import org.jetbrains.annotations.NotNull;
@@ -33,16 +34,11 @@ import java.util.regex.Matcher;
  */
 public class VsOnlineIssueProvider extends AbstractIssueProvider {
 
-  @NotNull
-  public static final String TYPE = "visualstudioonline";
-
-  @NotNull
-  public static final String DISPLAY_NAME = "VisualStudioOnline";
-
   private static final Logger LOG = Logger.getInstance(VsOnlineIssueProvider.class.getName());
 
-  public VsOnlineIssueProvider(@NotNull final IssueFetcher fetcher) {
-    super(TYPE, fetcher);
+  public VsOnlineIssueProvider(@NotNull final IssueProviderType type,
+                               @NotNull final IssueFetcher fetcher) {
+    super(type.getType(), fetcher);
   }
 
   @Override

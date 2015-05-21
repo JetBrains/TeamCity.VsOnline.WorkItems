@@ -18,8 +18,11 @@ package jetbrains.buildServer.vsonline;
 
 import jetbrains.buildServer.BaseTestCase;
 import jetbrains.buildServer.issueTracker.IssueFetcher;
+import jetbrains.buildServer.issueTracker.IssueProviderType;
 import jetbrains.buildServer.serverSide.InvalidProperty;
 import jetbrains.buildServer.serverSide.PropertiesProcessor;
+import jetbrains.buildServer.web.openapi.PluginDescriptor;
+import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -42,7 +45,13 @@ public class VsOnlineIssueProviderTest extends BaseTestCase {
     super.setUp();
     m = new Mockery();
     final IssueFetcher fetcher = m.mock(IssueFetcher.class);
-    myProvider = new VsOnlineIssueProvider(fetcher);
+    final PluginDescriptor descriptor = m.mock(PluginDescriptor.class);
+    m.checking(new Expectations() {{
+      allowing(descriptor).getPluginResourcesPath(with(any(String.class)));
+      will(returnValue(""));
+    }});
+    final IssueProviderType type = new VisualStudioOnlineProviderType(descriptor);
+    myProvider = new VsOnlineIssueProvider(type, fetcher);
   }
 
   @Test

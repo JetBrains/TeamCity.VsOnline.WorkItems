@@ -24,12 +24,13 @@ import org.jetbrains.annotations.NotNull;
  */
 public class VsOnlineIssueProviderFactory extends AbstractIssueProviderFactory {
 
-  public VsOnlineIssueProviderFactory(@NotNull final IssueFetcher fetcher) {
-    super(fetcher, VsOnlineIssueProvider.TYPE, VsOnlineIssueProvider.DISPLAY_NAME);
+  public VsOnlineIssueProviderFactory(@NotNull final IssueProviderType type,
+                                      @NotNull final IssueFetcher fetcher) {
+    super(type, fetcher);
   }
 
   @NotNull
   public IssueProvider createProvider() {
-    return new VsOnlineIssueProvider(myFetcher);
+    return new VsOnlineIssueProvider(myType, myFetcher);
   }
 }
