@@ -64,8 +64,7 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
    * http://www.visualstudio.com/en-us/integrate/reference/reference-vso-work-item-work-items-vsi#byids
    */
 
-  private static final String apiVersion = "1.0-preview.2"; // rest api version
-
+  private static final String apiVersion = "1.0"; // rest api version
 
   // host is sanitized in the form "host/collection/project/"
   @NotNull
