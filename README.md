@@ -15,6 +15,10 @@ Plugin uses standard TeamCity API to integrate with Visual Studio Online. Please
 
 - Support for human readable display name on UI
 
+##### master (TeamCity v9.1.x)
+- Support for api-version 1.0
+- TeamCity 9.1 API compatibility
+
 #### Installation and usage
 
 Before plugin can be used, [Alternate Credentials](http://www.visualstudio.com/en-us/integrate/get-started/get-started-auth-introduction-vsi) should be enabled
@@ -26,7 +30,7 @@ Branches define version of TeamCity, that is compatible with the plugin. When up
 major version, plugin branch must be switched
 
 
-#### Builds on [public TeamCity server](http://teamcity.jetbrains.com)
+#### Builds on [public TeamCity server](https://teamcity.jetbrains.com/project.html?projectId=TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin&tab=projectOverview)
 
 - [8.1.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)
 - [9.0.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt,pinned:true/statusIcon)
