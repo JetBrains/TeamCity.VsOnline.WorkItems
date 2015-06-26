@@ -29,6 +29,8 @@ major version, plugin branch must be switched
 #### Builds on [public TeamCity server](http://teamcity.jetbrains.com)
 
 - [8.1.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)
+- [9.0.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt,pinned:true/statusIcon)
+- [9.1.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_2&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_2,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_2,pinned:true/statusIcon)
 
 #### Links
 

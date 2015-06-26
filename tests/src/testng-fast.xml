@@ -2,8 +2,8 @@
 <suite name="vsonline tests">
   <test name="vsonline tests">
     <classes>
-      <class name="SimpleTest"/>
       <class name="jetbrains.buildServer.vsonline.VsOnlineIssueProviderTest"/>
+      <class name="jetbrains.buildServer.vsonline.VsOnlineIssueParserTest"/>
     </classes>
   </test>
 </suite>

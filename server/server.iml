@@ -20,6 +20,7 @@
           <file>jar://$TeamCityDistribution$/buildAgent/lib/common-impl.jar!/META-INF/shared-spring-sub-container.xml</file>
         </fileset>
         <fileset id="fileset" name="Spring Application Context" removed="false">
+          <dependency>fileset1</dependency>
           <file>file://$MODULE_DIR$/src/META-INF/build-server-plugin-TeamCity.VsOnline.xml</file>
           <file>file://$MODULE_DIR$/fake-teamcity-server-plugin-context.xml</file>
         </fileset>

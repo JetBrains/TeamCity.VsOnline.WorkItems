@@ -59,8 +59,8 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
 
   @NotNull
   @Override
-  protected String sanitizeHost(@NotNull String host) {
-    final String hostOnly = super.sanitizeHost(host);
+  protected String getFetchHost() {
+    String hostOnly = sanitizeHost(myHost);
     String collection = myProperties.get("collection");
     if (StringUtil.isEmptyOrSpaces(collection)) {
       collection = "defaultcollection";

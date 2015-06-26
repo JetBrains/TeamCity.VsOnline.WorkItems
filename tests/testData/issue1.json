@@ -1,0 +1,46 @@
+{
+  "id": 1,
+  "rev": 3,
+  "fields": {
+    "System.AreaPath": "tcissues",
+    "System.TeamProject": "tcissues",
+    "System.IterationPath": "tcissues",
+    "System.WorkItemType": "Feature",
+    "System.State": "New",
+    "System.Reason": "New feature",
+    "System.CreatedDate": "2014-10-12T06:25:04.15Z",
+    "System.CreatedBy": "Oleg Rybak <oleg.rybak@outlook.com>",
+    "System.ChangedDate": "2014-10-17T17:55:31.82Z",
+    "System.ChangedBy": "Oleg Rybak <oleg.rybak@outlook.com>",
+    "System.Title": "new awesome feature",
+    "Microsoft.VSTS.Common.BacklogPriority": 1000000000.0,
+    "Microsoft.VSTS.Common.StateChangeDate": "2014-10-12T06:25:04.15Z",
+    "Microsoft.VSTS.Common.Priority": 2,
+    "WEF_5BC35AD52EAB4FA5A28E9508B2F8057C_Kanban.Column": "New",
+    "System.History": "Associated with commit 20074e0ecd4f82aebb54407eba45cf7f4f48a100<br>Associated with commit 20074e0ecd4f82aebb54407eba45cf7f4f48a100"
+  },
+  "_links": {
+    "self": {
+      "href": "https://olegrybak.visualstudio.com/DefaultCollection/_apis/wit/workItems/1"
+    },
+    "workItemUpdates": {
+      "href": "https://olegrybak.visualstudio.com/DefaultCollection/_apis/wit/workItems/1/updates"
+    },
+    "workItemRevisions": {
+      "href": "https://olegrybak.visualstudio.com/DefaultCollection/_apis/wit/workItems/1/revisions"
+    },
+    "workItemHistory": {
+      "href": "https://olegrybak.visualstudio.com/DefaultCollection/_apis/wit/workItems/1/history"
+    },
+    "html": {
+      "href": "https://olegrybak.visualstudio.com/web/wi.aspx?pcguid=5ec82f24-7c51-40fd-8ada-d01f8b342f26&id=1"
+    },
+    "workItemType": {
+      "href": "https://olegrybak.visualstudio.com/DefaultCollection/253650ff-8c47-4376-aba1-a7db0b2d6145/_apis/wit/workItemTypes/Feature"
+    },
+    "fields": {
+      "href": "https://olegrybak.visualstudio.com/DefaultCollection/_apis/wit/fields"
+    }
+  },
+  "url": "https://olegrybak.visualstudio.com/DefaultCollection/_apis/wit/workItems/1"
+}

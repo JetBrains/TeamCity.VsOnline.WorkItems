@@ -16,17 +16,14 @@
 
 package jetbrains.buildServer.vsonline;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jetbrains.buildServer.issueTracker.AbstractIssueFetcher;
 import jetbrains.buildServer.issueTracker.IssueData;
-import jetbrains.buildServer.util.CollectionsUtil;
 import jetbrains.buildServer.util.cache.EhCacheUtil;
 import org.apache.commons.httpclient.Credentials;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,27 +32,19 @@ import java.util.regex.Pattern;
  */
 public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
 
-  private interface Containers {
-    String CONTAINER_FIELDS = "fields";
-    String CONTAINER_LINKS  = "_links";
-    String CONTAINER_HTML   = "html";
-  }
-
-  private interface Fields {
-    String FIELD_SUMMARY = "System.Title";
-    String FIELD_STATE   = "System.State";
-    String FIELD_TYPE    = "System.WorkItemType";
-    String FIELD_HREF    = "href";
-  }
-
   // host + / collection / area
   // http://account.visualstudio.com/collection/project
   private final Pattern p = Pattern.compile("^(http[s]?://.+\\.visualstudio.com)/(.+)/(.+)/$");
 
   private static final String URL_TEMPLATE_GET_ISSUE = "%s/%s/_apis/wit/workitems/%s?$expand=all&api-version=%s";
 
-  public VsOnlineIssueFetcher(@NotNull final EhCacheUtil cacheUtil) {
+  @NotNull
+  private final VsOnlineIssueParser myIssueParser;
+
+  public VsOnlineIssueFetcher(@NotNull final EhCacheUtil cacheUtil,
+                              @NotNull final VsOnlineIssueParser issueParser) {
     super(cacheUtil);
+    myIssueParser = issueParser;
   }
 
   /*
@@ -63,7 +52,6 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
    * http://www.visualstudio.com/en-us/integrate/reference/reference-vso-work-item-overview-vsi
    * http://www.visualstudio.com/en-us/integrate/reference/reference-vso-work-item-work-items-vsi#byids
    */
-
   private static final String apiVersion = "1.0"; // rest api version
 
   // host is sanitized in the form "host/collection/project/"
@@ -81,42 +69,9 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
       @NotNull
       public IssueData fetch() throws Exception {
         InputStream body = fetchHttpFile(restUrl, credentials);
-        return doGetIssue(body);
+        return myIssueParser.parse(body);
       }
     });
-  }
-
-  private IssueData doGetIssue(@NotNull final InputStream input) throws Exception {
-    final Map map = new ObjectMapper().readValue(input, Map.class);
-    return parseIssueData(map);
-  }
-
-  private IssueData parseIssueData(@NotNull final Map map) {
-    final Map fields = getContainer(map, Containers.CONTAINER_FIELDS);
-    final Map links = getContainer(map, Containers.CONTAINER_LINKS);
-    final Map html = getContainer(links, Containers.CONTAINER_HTML);
-    final String href = getField(html, Fields.FIELD_HREF);
-
-    return new IssueData(
-            String.valueOf(map.get("id")),
-            CollectionsUtil.asMap(
-                    IssueData.SUMMARY_FIELD, getField(fields, Fields.FIELD_SUMMARY),
-                    IssueData.STATE_FIELD, getField(fields, Fields.FIELD_STATE),
-                    IssueData.TYPE_FIELD, getField(fields, Fields.FIELD_TYPE),
-                    "href", href
-            ),
-            false, // todo: state
-            "Feature".equals(getField(fields, Fields.FIELD_TYPE)),
-            href
-    );
-  }
-
-  private Map getContainer(final Map map, @NotNull final String name) {
-    return (Map) map.get(name);
-  }
-
-  private String getField(final Map map, @NotNull final String name) {
-    return (String) map.get(name);
   }
 
   @NotNull

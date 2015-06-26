@@ -57,7 +57,7 @@ public class VsOnlineIssueFetcherTest extends BaseServerTestCase {
             myServer.getSingletonService(EventDispatcher.class),
             myServer.getSingletonService(ResetCacheRegister.class)
             );
-    myFetcher = new VsOnlineIssueFetcher(util);
+    myFetcher = new VsOnlineIssueFetcher(util, new VsOnlineIssueParser());
     myCredentials = new UsernamePasswordCredentials(login, password);
   }
 
