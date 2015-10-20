@@ -15,7 +15,7 @@ Plugin uses standard TeamCity API to integrate with Visual Studio Online. Please
 
 - Support for human readable display name on UI
 
-##### master (TeamCity v9.1.x)
+##### Hajipur-9.1.x Branch
 - Support for api-version 1.0
 - TeamCity 9.1 API compatibility
 
