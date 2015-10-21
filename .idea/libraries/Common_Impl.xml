@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="Common-Impl">
     <CLASSES>
-      <root url="jar://$teamcitydistribution$/buildAgent/lib/common-impl.jar!/" />
+      <root url="jar://$TeamCityDistribution$/buildAgent/lib/common-impl.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
