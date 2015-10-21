@@ -51,5 +51,6 @@
     <orderEntry type="library" name="httpclient" level="project" />
     <orderEntry type="library" name="server" level="project" />
     <orderEntry type="library" name="jackson" level="project" />
+    <orderEntry type="library" name="commons-io" level="project" />
   </component>
 </module>
