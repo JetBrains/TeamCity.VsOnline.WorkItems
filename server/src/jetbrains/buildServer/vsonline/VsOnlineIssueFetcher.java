@@ -16,13 +16,16 @@
 
 package jetbrains.buildServer.vsonline;
 
+import com.intellij.openapi.diagnostic.Logger;
 import jetbrains.buildServer.issueTracker.AbstractIssueFetcher;
 import jetbrains.buildServer.issueTracker.IssueData;
 import jetbrains.buildServer.util.cache.EhCacheUtil;
 import org.apache.commons.httpclient.Credentials;
+import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +34,8 @@ import java.util.regex.Pattern;
  * @author Oleg Rybak <oleg.rybak@jetbrains.com>
  */
 public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
+
+  private final static Logger LOG = Logger.getInstance(VsOnlineIssueFetcher.class.getName());
 
   // host + / collection / area
   // http://account.visualstudio.com/collection/project
@@ -68,8 +73,15 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
     return getFromCacheOrFetch(cacheKey, new FetchFunction() {
       @NotNull
       public IssueData fetch() throws Exception {
-        InputStream body = fetchHttpFile(restUrl, credentials);
-        return myIssueParser.parse(body);
+        InputStream body;
+        try {
+          body = fetchHttpFile(restUrl, credentials);
+        } catch (IOException e) {
+          LOG.error("Could not fetch issue with id [" + id + "]. Request url: [" + restUrl + ".", e);
+          throw e;
+        }
+        final String responseString = IOUtils.toString(body, "UTF-8");
+        return myIssueParser.parse(responseString);
       }
     });
   }

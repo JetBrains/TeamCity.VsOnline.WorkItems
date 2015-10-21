@@ -1,0 +1,3 @@
+<html><head><title>Object moved</title></head><body>
+<h2>Object moved to <a href="https://app.vssps.visualstudio.com/_signin?realm=myproject.visualstudio.com&amp;reply_to=https%3A%2F%2Fmyproject.visualstudio.com%2FDefaultCollection%2F_apis%2Fwit%2Fworkitems%2F2856%3F%2524expand%3Dall&amp;redirect=1&amp;context=eyJodCI6MiwiaGlkIjoiNGMxOTQ0YjUtZmRlZC00ZWIwLThhYjEtODZjNTBlMWYzNWExIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbSIsImh0dHBzOi8vbG9naW4ubWljcm9zb2Z0b25saW5lL...>
+</body></html>

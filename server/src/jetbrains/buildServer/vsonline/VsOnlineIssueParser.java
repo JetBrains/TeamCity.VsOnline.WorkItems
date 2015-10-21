@@ -17,11 +17,11 @@
 package jetbrains.buildServer.vsonline;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.intellij.openapi.diagnostic.Logger;
 import jetbrains.buildServer.issueTracker.IssueData;
 import jetbrains.buildServer.util.CollectionsUtil;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.InputStream;
 import java.util.Map;
 
 /**
@@ -30,6 +30,8 @@ import java.util.Map;
  * @author Oleg Rybak (oleg.rybak@jetbrains.com)
  */
 public class VsOnlineIssueParser {
+
+  private final static Logger LOG = Logger.getInstance(VsOnlineIssueParser.class.getName());
 
   private interface Containers {
     String CONTAINER_FIELDS = "fields";
@@ -44,10 +46,19 @@ public class VsOnlineIssueParser {
     String FIELD_HREF    = "href";
   }
 
-
-  public IssueData parse(@NotNull final InputStream in) throws Exception {
-    final Map map = new ObjectMapper().readValue(in, Map.class);
-    return parseIssueData(map);
+  public IssueData parse(@NotNull final String issueString) throws Exception {
+    try {
+      final Map map = new ObjectMapper().readValue(issueString, Map.class);
+      return parseIssueData(map);
+    } catch (Exception e) {
+      LOG.error("Could not parse issue json. Error message is: " + e.getMessage());
+      if (LOG.isDebugEnabled()) {
+        LOG.debug("Could not parse issue json. Response (cut to first 100 symbols): ["
+                + issueString.substring(Math.min(100, issueString.length() - 1))
+        );
+      }
+      throw e;
+    }
   }
 
   private IssueData parseIssueData(@NotNull final Map map) {

@@ -18,11 +18,12 @@ package jetbrains.buildServer.vsonline;
 
 import jetbrains.buildServer.BaseTestCase;
 import jetbrains.buildServer.issueTracker.IssueData;
+import jetbrains.buildServer.util.FileUtil;
 import org.jetbrains.annotations.NotNull;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.io.InputStream;
+import java.nio.charset.Charset;
 
 /**
  * Created with IntelliJ IDEA.
@@ -42,14 +43,19 @@ public class VsOnlineIssueParserTest extends BaseTestCase {
 
   @Test
   public void testParseIssue_issue1() throws Exception {
-    IssueData data = myParser.parse(getFileAsStream("issue1.json"));
+    IssueData data = myParser.parse(getTestFileContents("issue1.json"));
     assertNotNull(data);
     assertEquals("1", data.getId());
     assertEquals("New", data.getState());
     assertEquals("Feature", data.getType());
   }
 
-  private InputStream getFileAsStream(@NotNull final String fileName) throws Exception {
-    return getClass().getResourceAsStream("/" + fileName);
+  @Test(expectedExceptions = RuntimeException.class)
+  public void testParseIssue_Invalid() throws Exception {
+      myParser.parse(getTestFileContents("invalid.txt"));
+  }
+
+  private String getTestFileContents(@NotNull final String fileName) throws Exception {
+    return FileUtil.readResourceAsString(getClass(), "/" + fileName, Charset.forName("UTF-8"));
   }
 }
