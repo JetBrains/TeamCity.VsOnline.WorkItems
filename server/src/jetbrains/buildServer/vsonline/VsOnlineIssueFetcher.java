@@ -40,6 +40,7 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
   // host + / collection / area
   // http://account.visualstudio.com/collection/project
   private final Pattern p = Pattern.compile("^(http[s]?://.+\\.visualstudio.com)/(.+)/(.+)/$");
+  private String fetchHost;
 
   private static final String URL_TEMPLATE_GET_ISSUE = "%s/%s/_apis/wit/workitems/%s?$expand=all&api-version=%s";
 
@@ -86,8 +87,12 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
     });
   }
 
+  public void setFetchHost(String host) {
+    fetchHost = host;
+  }
+
   @NotNull
   public String getUrl(@NotNull String host, @NotNull String id) {
-    return host + "_workitems/edit/" + id;
+    return fetchHost + "_workitems/edit/" + id;
   }
 }

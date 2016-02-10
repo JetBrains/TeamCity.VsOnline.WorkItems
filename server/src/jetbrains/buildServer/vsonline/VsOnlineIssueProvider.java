@@ -57,6 +57,14 @@ public class VsOnlineIssueProvider extends AbstractIssueProvider {
     }
   }
 
+  @Override
+  public void setProperties(@NotNull Map<String, String> map) {
+    super.setProperties(map);
+    if(myFetcher instanceof VsOnlineIssueFetcher) {
+      ((VsOnlineIssueFetcher) myFetcher).setFetchHost(myFetchHost);
+    }
+  }
+
   @NotNull
   @Override
   protected String getFetchHost() {
