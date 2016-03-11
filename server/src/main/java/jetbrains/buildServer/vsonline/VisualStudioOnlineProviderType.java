@@ -34,7 +34,7 @@ public class VisualStudioOnlineProviderType extends IssueProviderType {
   private final String myPopupUrl;
 
   public VisualStudioOnlineProviderType(@NotNull final PluginDescriptor pluginDescriptor) {
-    myConfigUrl = pluginDescriptor.getPluginResourcesPath("admin/editIssueProvider.jsp");
+    myConfigUrl = pluginDescriptor.getPluginResourcesPath("buildServerResources/admin/editIssueProvider.jsp");
     myPopupUrl = pluginDescriptor.getPluginResourcesPath("popup.jsp");
   }
 

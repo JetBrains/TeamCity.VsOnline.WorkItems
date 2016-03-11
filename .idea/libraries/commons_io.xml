@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="commons-io">
-    <CLASSES>
-      <root url="jar://$TeamCityDistribution$/webapps/ROOT/WEB-INF/lib/commons-io-1.3.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
