@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="All Tests" type="TestNG" factoryName="TestNG">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-    <module name="tests" />
+    <module name="server" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
     <option name="ALTERNATIVE_JRE_PATH" />
-    <option name="SUITE_NAME" value="$PROJECT_DIR$/server/tests/java/testng-fast.xml" />
+    <option name="SUITE_NAME" value="$PROJECT_DIR$/server/test/java/testng-fast.xml" />
     <option name="PACKAGE_NAME" value="" />
     <option name="MAIN_CLASS_NAME" value="" />
     <option name="METHOD_NAME" value="" />
