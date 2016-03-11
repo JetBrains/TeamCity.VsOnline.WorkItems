@@ -49,7 +49,7 @@
     </pluginManagement>
   </build>
   <modules>
-    <module>server</module>
+    <module>TeamCity.VsOnline.WorkItems-server</module>
     <module>build</module>
   </modules>
 </project>
