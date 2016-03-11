@@ -5,19 +5,25 @@
 
 Plugin uses standard TeamCity API to integrate with Visual Studio Online. Please refer to [TeamCity documentation] (https://confluence.jetbrains.com/display/TCD8/Integrating+TeamCity+with+Issue+Tracker)
 
+##### Master branch
+- TeamCity 10.0 API compatibility
+- Java 8 is required
+- Build and dependency management switched to maven
+
+##### Hajipur-9.1.x Branch
+- Support for api-version 1.0
+- TeamCity 9.1 API compatibility
+
+##### Hajipur-9.0.x Branch
+
+- Support for human readable display name on UI
+
 ##### Gaya-8.1.x Branch
 
 - Supports authentication only with [Alternate Credentials](http://www.visualstudio.com/en-us/integrate/get-started/get-started-auth-introduction-vsi)
 - Supports only one collection per issue tracker defined
 - Supports only one project per issue tracker defined. Project must be specified explicitly
 
-##### Hajipur-9.0.x Branch
-
-- Support for human readable display name on UI
-
-##### Hajipur-9.1.x Branch
-- Support for api-version 1.0
-- TeamCity 9.1 API compatibility
 
 #### Installation and usage
 
@@ -35,6 +41,7 @@ major version, plugin branch must be switched
 - [8.1.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VSO_Workitems81x&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VSO_Workitems81x,pinned:true/statusIcon)
 - [9.0.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWorkIt,pinned:true/statusIcon)
 - [9.1.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_2&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_2,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_2,pinned:true/statusIcon)
+- [10.0.x version](https://teamcity.jetbrains.com/viewLog.html?buildTypeId=TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_3&buildId=lastPinned) [![](https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_2,pinned:true/statusIcon)] (https://teamcity.jetbrains.com/app/rest/builds/buildType:TeamCityPluginsByJetBrains_VisualStudioOnlineIssueTrackin_TeamCityVsOnlineWork_3,pinned:true/statusIcon)
 
 #### Links
 
