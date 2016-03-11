@@ -14,7 +14,7 @@
         </element>
         <element id="archive" name="vsonline-resources.jar">
           <element id="directory" name="buildServerResources">
-            <element id="dir-copy" path="$PROJECT_DIR$/server/resources" />
+            <element id="dir-copy" path="$PROJECT_DIR$/server/src/main/resources" />
           </element>
         </element>
         <element id="library" level="project" name="jackson" />
