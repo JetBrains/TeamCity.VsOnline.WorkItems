@@ -48,6 +48,37 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+    <profile>
+      <id>orybak-dev</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <dev.teamcity.dir>W:\dist\tc_for_plugins</dev.teamcity.dir>
+        <dev.teamcity.data.path>w:\dist\PluginDev.Data.VsOnline.WorkItems</dev.teamcity.data.path>
+        <dev.teamcity.version>10.0 EAP</dev.teamcity.version>
+        <dev.teamcity.start.agent>false</dev.teamcity.start.agent>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jetbrains.teamcity</groupId>
+            <artifactId>teamcity-sdk-maven-plugin</artifactId>
+            <version>0.4-SNAPSHOT</version>
+            <configuration>
+              <teamcityDir>${dev.teamcity.dir}</teamcityDir>
+              <dataDirectory>${dev.teamcity.data.path}</dataDirectory>
+              <teamcityVersion>${dev.teamcity.version}</teamcityVersion>
+              <startAgent>${dev.teamcity.start.agent}</startAgent>
+              <serverDebugStr>-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=10111 -Dteamcity.development.mode=true -Dteamcity.oauthConnections.enabled=true</serverDebugStr>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <modules>
     <module>TeamCity.VsOnline.WorkItems-server</module>
     <module>build</module>
