@@ -48,6 +48,7 @@ public class VsOnlineIssueParserTest extends BaseTestCase {
     assertEquals("1", data.getId());
     assertEquals("New", data.getState());
     assertEquals("Feature", data.getType());
+    assertEquals("tcissues", data.getAllFields().get(VsOnlineIssueParser.IssueDataFields.ID_FIELD_PROJECT));
   }
 
   @Test(expectedExceptions = RuntimeException.class)

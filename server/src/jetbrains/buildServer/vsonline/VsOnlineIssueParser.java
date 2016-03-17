@@ -43,9 +43,16 @@ public class VsOnlineIssueParser {
     String FIELD_SUMMARY = "System.Title";
     String FIELD_STATE   = "System.State";
     String FIELD_TYPE    = "System.WorkItemType";
+    String FIELD_PROJECT = "System.TeamProject";
     String FIELD_HREF    = "href";
   }
 
+  public interface IssueDataFields {
+    String ID_FIELD_HREF = "href";
+    String ID_FIELD_PROJECT= "project";
+  }
+
+  @NotNull
   public IssueData parse(@NotNull final String issueString) throws Exception {
     try {
       final Map map = new ObjectMapper().readValue(issueString, Map.class);
@@ -61,11 +68,12 @@ public class VsOnlineIssueParser {
     }
   }
 
-  private IssueData parseIssueData(@NotNull final Map map) {
+  private IssueData parseIssueData(@NotNull final Map map) throws Exception {
     final Map fields = getContainer(map, Containers.CONTAINER_FIELDS);
     final Map links = getContainer(map, Containers.CONTAINER_LINKS);
     final Map html = getContainer(links, Containers.CONTAINER_HTML);
     final String href = getField(html, Fields.FIELD_HREF);
+    final String actualProject = getField(fields, Fields.FIELD_PROJECT);
 
     return new IssueData(
             String.valueOf(map.get("id")),
@@ -73,7 +81,8 @@ public class VsOnlineIssueParser {
                     IssueData.SUMMARY_FIELD, getField(fields, Fields.FIELD_SUMMARY),
                     IssueData.STATE_FIELD, getField(fields, Fields.FIELD_STATE),
                     IssueData.TYPE_FIELD, getField(fields, Fields.FIELD_TYPE),
-                    "href", href
+                    IssueDataFields.ID_FIELD_PROJECT, actualProject,
+                    IssueDataFields.ID_FIELD_HREF, href
             ),
             false, // todo: state
             "Feature".equals(getField(fields, Fields.FIELD_TYPE)),
