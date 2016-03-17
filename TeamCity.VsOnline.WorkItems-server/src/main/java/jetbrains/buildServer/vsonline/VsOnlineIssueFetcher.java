@@ -41,7 +41,6 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
   // http://account.visualstudio.com/collection/project
   private final Pattern p = Pattern.compile("^(http[s]?://.+\\.visualstudio.com)/(.+)/(.+)/$");
   private String fetchHost;
-
   private static final String URL_TEMPLATE_GET_ISSUE = "%s/%s/_apis/wit/workitems/%s?$expand=all&api-version=%s";
 
   @NotNull
@@ -60,6 +59,11 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
    */
   private static final String apiVersion = "1.0"; // rest api version
 
+  // post address: https://{instance}/defaultcollection/[{project}/]_apis/wit/wiql?api-version={version
+  // content type: application/json
+  // payload: {"query": string}
+
+
   // host is sanitized in the form "host/collection/project/"
   @NotNull
   public IssueData getIssue(@NotNull final String host, @NotNull final String id, @Nullable final Credentials credentials) throws Exception {
@@ -69,7 +73,9 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
     }
     final String hostOnly = m.group(1);
     final String collection = m.group(2);
+    final String project = m.group(3);
     final String cacheKey = getUrl(host, id);
+
     final String restUrl = String.format(URL_TEMPLATE_GET_ISSUE, hostOnly, collection, id, apiVersion);
     return getFromCacheOrFetch(cacheKey, new FetchFunction() {
       @NotNull
@@ -81,10 +87,16 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
           LOG.error("Could not fetch issue with id [" + id + "]. Request url: [" + restUrl + ".", e);
           throw e;
         }
-        final String responseString = IOUtils.toString(body, "UTF-8");
-        return myIssueParser.parse(responseString);
+        return validateForProject(myIssueParser.parse(IOUtils.toString(body, "UTF-8")), project);
       }
     });
+  }
+
+  private IssueData validateForProject(@NotNull final IssueData data, @NotNull final String project) throws Exception {
+    if (!project.equals(data.getAllFields().get(VsOnlineIssueParser.IssueDataFields.ID_FIELD_PROJECT))) {
+      throw new Exception("Issue with id " + data.getId() + " was not found in project " + project);
+    }
+    return data;
   }
 
   public void setFetchHost(String host) {
