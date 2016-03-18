@@ -3,9 +3,9 @@
                  xsi:noNamespaceSchemaLocation="urn:shemas-jetbrains-com:teamcity-plugin-v1-xml">
   <info>
     <name>visualstudioonline</name>
-    <display-name>TeamCity.VsOnline</display-name>
+    <display-name>Visual Studio Team Services Work Items</display-name>
     <version>@Plugin_Version@</version> <!-- will be replaced from script -->
-    <description>Provides integration with VisualStudio online as issue tracker</description>
+    <description>Integration with Visual Studio Team Services work items tracking</description>
     <vendor>
       <name>@Plugin_Vendor@</name>  <!-- will be replaced from script -->
       <url>@Plugin_Vendor_Url@</url> <!-- will be replaced from script -->
