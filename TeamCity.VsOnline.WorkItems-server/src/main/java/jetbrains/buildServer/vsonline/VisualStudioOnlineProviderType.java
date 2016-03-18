@@ -53,7 +53,7 @@ public class VisualStudioOnlineProviderType extends IssueProviderType {
   @NotNull
   @Override
   public String getDisplayName() {
-    return "Visual Studio Online";
+    return "Visual Studio Team Services";
   }
 
   @NotNull
