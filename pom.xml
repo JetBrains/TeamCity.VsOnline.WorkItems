@@ -10,14 +10,14 @@
   </properties>
   <repositories>
     <repository>
-      <id>JetBrains</id>
-      <url>http://repository.jetbrains.com/all</url>
+      <id>jetbrains-all</id>
+      <url>http://download.jetbrains.com/teamcity-repository</url>
     </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
-      <id>JetBrains</id>
-      <url>http://repository.jetbrains.com/all</url>
+      <id>jetbrains-all</id>
+      <url>http://download.jetbrains.com/teamcity-repository</url>
     </pluginRepository>
   </pluginRepositories>
   <build>
