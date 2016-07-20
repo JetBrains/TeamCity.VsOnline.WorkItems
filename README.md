@@ -1,5 +1,13 @@
 ### TeamCity Visual Studio Online WorkItems plugin
-##### Enables tracking of issues defined in [Visual Studio Online projects](http://msdn.microsoft.com/en-us/library/hh409275.aspx)
+Enables tracking of issues defined in [Visual Studio Online projects](http://msdn.microsoft.com/en-us/library/hh409275.aspx)
+
+----
+
+**_Thanks for all your contributions. It's time to move to the built-in in TeamCity 10 [Team Foundation Work Items plugin](https://confluence.jetbrains.com/display/TCD10/Team+Foundation+Work+Items)._**
+
+> :point_up: While upgrading to TeamCity 10 all issue tracker connections of this plugin will be converted into TFS Work Items, so please remove this plugin.
+
+----
 
 #### Functionality and Limitations
 
