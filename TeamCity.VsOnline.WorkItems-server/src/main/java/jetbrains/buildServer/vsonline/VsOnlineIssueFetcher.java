@@ -20,6 +20,7 @@ import com.intellij.openapi.diagnostic.Logger;
 import jetbrains.buildServer.issueTracker.AbstractIssueFetcher;
 import jetbrains.buildServer.issueTracker.IssueData;
 import jetbrains.buildServer.util.cache.EhCacheHelper;
+import jetbrains.buildServer.util.cache.EhCacheUtil;
 import org.apache.commons.httpclient.Credentials;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
@@ -46,9 +47,9 @@ public class VsOnlineIssueFetcher extends AbstractIssueFetcher {
   @NotNull
   private final VsOnlineIssueParser myIssueParser;
 
-  public VsOnlineIssueFetcher(@NotNull final EhCacheHelper cacheHelper,
+  public VsOnlineIssueFetcher(@NotNull final EhCacheUtil cacheUtil,
                               @NotNull final VsOnlineIssueParser issueParser) {
-    super(cacheHelper);
+    super(cacheUtil);
     myIssueParser = issueParser;
   }
 
