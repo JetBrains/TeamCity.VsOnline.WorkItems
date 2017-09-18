@@ -3,7 +3,7 @@ Enables tracking of issues defined in [Visual Studio Online projects](http://msd
 
 ----
 
-**_Thanks for all your contributions. It's time to move to the built-in in TeamCity 10 [Team Foundation Work Items plugin](https://confluence.jetbrains.com/display/TCD10/Team+Foundation+Work+Items)._**
+**_Thanks for all your contributions. It's time to move to the built-in in TeamCity 10 [Team Foundation Work Items plugin](https://confluence.jetbrains.com/display/TCDL/Team+Foundation+Work+Items)._**
 
 > :point_up: While upgrading to TeamCity 10 all issue tracker connections of this plugin will be converted into TFS Work Items, so please remove this plugin.
 
@@ -11,7 +11,7 @@ Enables tracking of issues defined in [Visual Studio Online projects](http://msd
 
 ## Functionality and Limitations
 
-Plugin uses standard TeamCity API to integrate with Visual Studio Online. Please refer to [TeamCity documentation] (https://confluence.jetbrains.com/display/TCD8/Integrating+TeamCity+with+Issue+Tracker)
+Plugin uses standard TeamCity API to integrate with Visual Studio Online. Please refer to [TeamCity documentation](https://confluence.jetbrains.com/display/TCDL/Integrating+TeamCity+with+Issue+Tracker).
 
 ### Master branch
 - TeamCity 10.0 API compatibility
